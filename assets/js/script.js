@@ -30,7 +30,7 @@ var loadTasks = function () {
 
   // loop over object properties
   $.each(tasks, function (list, arr) {
-    // console.log(list, arr);
+    console.log(list, arr);
     // then loop over sub-array
     arr.forEach(function (task) {
       createTask(task.text, task.date, list);
@@ -40,16 +40,7 @@ var loadTasks = function () {
 
 var saveTasks = function () {
   localStorage.setItem('tasks', JSON.stringify(tasks));
-  In;
 };
-
-$('.list-group').on('click', 'p', function () {
-  var text = $(this).text().trim();
-});
-
-var textInput = $('<textarea>').addClass('form-control').val(text);
-
-$(this).replaceWith(textInput);
 
 // modal was triggered
 $('#task-form-modal').on('show.bs.modal', function () {
