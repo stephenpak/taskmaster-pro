@@ -151,7 +151,7 @@ $('.list-group').on('click', 'p', function () {
 });
 
 // editable field was un-focused
-$('.list-group').on('blur', 'textarea', function () {
+$('.list-group').on('change', "input[type='text']", function () {
   // get current value of textarea
   var text = $(this).val();
 
@@ -180,7 +180,17 @@ $('.list-group').on('click', 'span', function () {
     .attr('type', 'text')
     .addClass('form-control')
     .val(date);
+
   $(this).replaceWith(dateInput);
+
+  // enable jquery ui datepicker
+  dateInput.datepicker({
+    minDate: 1,
+    onClose: function () {
+      // when calendar is closed, force a "change" event on the `dateInput`
+      $(this).trigger('change');
+    },
+  });
 
   // automatically bring up the calendar
   dateInput.trigger('focus');
@@ -215,5 +225,8 @@ $('#remove-tasks').on('click', function () {
   saveTasks();
 });
 
+$('#modalDueDate').datepicker({
+  minDate: 1,
+});
 // load tasks for the first time
 loadTasks();
